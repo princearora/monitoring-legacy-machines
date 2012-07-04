@@ -135,9 +135,6 @@ mtconnect \sep legacy machines \sep manufacturing \sep in-situ analysis
 %% main text
 \section{Introduction}
 \label{Introduction}
-Questions:
-Why do I care?
-What did I do?
 Why did I do it?
 What did I find out?
 What does it mean?
@@ -153,10 +150,42 @@ Though awareness is bound to creep in sooner or later, the first two listed setb
 
 The advent and widespread acceptance of such a standard can open many new avenues in the field of manufacturing management. Apart from monitoring the machines, for the first time ever, it might be possible to make advancements in the not so well developed field of predictive quality and predictive maintenance. But for all this to materialize, it is important to bring most of our current machines under the aegis of a single standard. It is easy to write adapters for the new numerically computer controlled machines but getting meaningful data from old legacy machines still seems a task in distant future. We believe it might make a difference if we could provide some architecture to gather from these machines data that makes sense. Hence we tried to come up with a new pipeline to get data and generate information in-situ. The later sections explain it in detail.
 
+\section{Approach}
+\label{Approach}
+\subsection{Framework}
+Past efforts in this field have been targeted at getting data by mounting sensors and then analyzing it on a remote machine. The new architecture proposed by us tries to do the same in-situ at the point of data collection itself. We call this iAdapter or the intelligent adapter as it provides comprehensible information using data spewed by comparatively cheap sensors.
+
+\begin{list}{-}{The iAdapter hardware framework is conceived as follows:}
+\item A set of analog sensors mounted over the machine \item A Labjack U3 device to take input from the legacy/low-end analog sensors \item A ConnectOne device to take  input from compatible sensors* \item An embedded system to take input from the Labjack device* \item Intra/Internet to transmit data 
+\end{list}
+(the requirements marked with * can be grouped together in a single device)
+
+\subsection{Sensors}
+Various different types of sensors can be mounted in conjunction with the labjack device. The most important ones amongst those used for our experiments included 3-axis accelerometers at the spindle head and at the body and  hydraulic and pneumatic sensors to monitor the system and coolant pressure. The accelerometers were connected to the Labjack device whereas the rest of them were connected via ConnectOne\footnote{ConnectOne is a proprietary data acquisition device developed by System Insights Inc., a company working with MTConnect Compatible Machines to give insights about the manufacturing processes.}.
+
+\subsection{The Black Box}
+The analysis blackbox in this case can be any full fledged PC or even an embedded system. In order to test it out with the bare bones, it was tried to implement all the developement codes on an embedded system named Alekto, an ARM9 RISC embedded industrial computer. It accepts raw sensor data from a variety of devices as well as the regular MTConnect agent stream, and tries to make sense out of it.
+
+In general the amount of data generated is huge, and it is important to scale it down before sending it over to the main database or the MTConnect Agent. It performs onsite down sampling and sends over the relevant information to the remote computer/cloud storage. This helps improve performance characteristics, limits bandwidth usage and helps maintan a fixed latency between data packets. The second big advantage it provides over the current architecture is the ability to define alarm conditions. Given a set of limits, it can keep on spewing information regarding device and parameter conditions. With assissted learning, it can also improve upon these limits over time.
+
+\section{Implementation}
+\label{Implementation}
+\subsection{Data Acquisition}
+The sensors were mounted over a TAKISAWA TC-200 horizontal Lathe. A CNC lathe machine was chosen so that the results obtained are applicable to a wide range of machines across various industries. Such machines are used for a variety of turning operations all across the world. The sensors chosen for the task were also pretty generic. They included a hydraulic and pneumatic pressure sensors and 3-axis accelerometers. The later were picked up from a commonly accessible hobby robotics online shop.
+
+The analog sensors were connected to a Labjack U3-HV\footnote{Labjack U3-HV is a USB based multifunction data acquisition and control device which allows for upto 16 analog input channels.}. It can be interfaced with any analog or digital sensor to monitor condition of the machine in realtime. The data collected is transferred over USB and any embedded system can be used to log the same. Here it is worth mentioning that it is required to separately compile the adapter for Labjack device individually for each type of embedded device.
+
+Even after the driver is ready, we need a software MTConnect adapter to transmit data following the MTConnect protocols. The Labjack adapter was coded in C++. It follows the standard framework of other MTConnect Adapters currently in use.  The adapter was initially programmed to record and transmit one value per port. Later it was decided to use the same to take sensor input at around 1000Hz per channel. Hence, the adapter was written from scratch by making use of the stream mode supported by the device. As of now, the adapter has been tested for the 1-7 channel input at around 1000Hz per channel.
+
+The adapter is installed along with the driver on Alekto, an ARM9 RISC embedded industrial computer. The Labjack U3-HV connects via USB to an external USB hub powered by external power.
+
+\subsection{Data Analysis}
+The Labjack adapter explained in the last subsection spews analog values of the sensor data at a specified network socket. The data acquired through various sources is then analyzed on Alekto. The amount of data generated is huge, and it is important to scale it down before sending it over to the main database or the MTConnect Agent. This is but one function performed at this stage. The function which sets it apart is its ability to find alarm states with the sensor data. This feature helps bring in Legacy Machines under the aegis of MTConnect Compatibility and can potentially help in predictive/preventive maintenance.
+
+Two different languages Ruby and R were used in this particular implementation of iAdapter.
 %% The Appendices part is started with the command \appendix;
 %% appendix sections are then done as normal sections
 %% \appendix
-
 %% \section{}
 %% \label{}
 

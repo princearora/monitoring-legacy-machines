@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.1.7)  3 JUL 2012 11:40
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.1.7)  4 JUL 2012 09:04
 entering extended mode
  %&-line parsing enabled.
 **paper_try.tex
@@ -558,39 +558,39 @@ LaTeX Font Info:    Try loading font information for U+txsyc on input line 131.
 (/usr/share/texmf-texlive/tex/latex/txfonts/utxsyc.fd
 File: utxsyc.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Try loading font information for OMS+txr on input line 148.
+LaTeX Font Info:    Try loading font information for OMS+txr on input line 145.
 
 
 (/usr/share/texmf-texlive/tex/latex/txfonts/omstxr.fd
 File: omstxr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `OMS/txr/m/n' in size <10> not available
-(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 148.
+(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 145.
 Missing character: There is no â in font txr!
 Missing character: There is no € in font txr!
 Missing character: There is no ™ in font txr!
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
+
+]
 No file paper_try.bbl.
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
-
-] (./paper_try.aux) ) 
+[2] (./paper_try.aux) ) 
 Here is how much of TeX's memory you used:
- 2691 strings out of 495061
- 33037 string characters out of 1182622
- 86858 words of memory out of 3000000
- 5819 multiletter control sequences out of 15000+50000
+ 2693 strings out of 495061
+ 33063 string characters out of 1182622
+ 87874 words of memory out of 3000000
+ 5821 multiletter control sequences out of 15000+50000
  32582 words of font info for 84 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  32i,8n,34p,946b,215s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</us
-r/share/texmf-texlive/fonts/type1/public/txfonts/rtxr.pfb></usr/share/texmf-tex
-live/fonts/type1/public/txfonts/txsy.pfb></usr/share/texmf-texlive/fonts/type1/
-urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb
-></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper_try.pdf (1 page, 46640 bytes).
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</
+usr/share/texmf-texlive/fonts/type1/public/txfonts/rtxr.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/txfonts/txsy.pfb></usr/share/texmf-texlive/fonts/type
+1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.p
+fb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper_try.pdf (2 pages, 56796 bytes).
 PDF statistics:
- 27 PDF objects out of 1000 (max. 8388607)
+ 30 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
